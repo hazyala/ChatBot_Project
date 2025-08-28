@@ -4,8 +4,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fetch from "node-fetch";
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
+
+app.listen(PORT, () => {
+  console.log(`서버 실행 중: http://localhost:${PORT}`);
+});
 
 // ── 미들웨어
 app.use(express.json());
