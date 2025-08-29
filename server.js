@@ -1,4 +1,4 @@
-// ==================== server.js (수정본) ====================
+// ==================== server.js  ====================
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -74,7 +74,6 @@ app.post("/chat", async (req, res) => {
       body: JSON.stringify({
         model,
         messages,
-        // 필요 시 온도/기타 파라미터를 여기서만 조절
         temperature: 0.7,
       }),
     });
@@ -86,7 +85,7 @@ app.post("/chat", async (req, res) => {
       return res.status(response.status).json({ success: false, ...data });
     }
 
-    // ✅ 실제 서빙된 모델명을 함께 회신 → 클라에서 served-model로 검증 가능
+    //실제 서빙된 모델명을 함께 회신
     return res.json({ success: true, ...data, servedModel: data?.model });
   } catch (error) {
     console.error("Chat API 오류:", error);

@@ -1,6 +1,6 @@
-// ==================== chat.js (수정본) ====================
+// ==================== chat.js  ====================
 // 선택한 모델과 API 키는 index.html에서 sessionStorage에 저장됨
-// sessionStorage를 사용하여 브라우저 세션이 종료되면 데이터가 자동으로 삭제되도록 합니다.
+// sessionStorage를 사용하여 브라우저 세션이 종료되면 데이터가 자동으로 삭제
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- 세션 읽기 ---
@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendBtn     = document.getElementById("send-btn");
   const clearBtn    = document.getElementById("clear-btn");
   const modelBadge  = document.getElementById("model-badge");
-  const servedBadge = document.getElementById("served-model"); // (선택) 실제 서빙 모델 표기
+  const servedBadge = document.getElementById("served-model"); 
 
-  // 세션 없으면 index로
+  // 세션 없으면 index로 돌아감
   if (!selectedModel || !apiKey) {
     alert("세션이 없습니다. index에서 모델과 API 키를 먼저 입력해주세요.");
     window.location.href = "index.html";
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 상태
   let controller = null;
-  let sending = false;                 // ⛑ 중복 전송 방지
-  let isComposing = false;             // ⛑ 한글 IME 조합 상태
+  let sending = false;                 
+  let isComposing = false;           
   let messages = [
     { role: "system", content: "You are a helpful assistant." }
   ];
@@ -80,17 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
     textareaEl.focus();
   });
 
-  // --- IME 조합 상태 처리(한글 중복 전송 방지의 핵심) ---
+  // --- 한글 중복 전송 방지 ---
   textareaEl.addEventListener("compositionstart", () => { isComposing = true; });
   textareaEl.addEventListener("compositionend",   () => { isComposing = false; });
 
   // --- Enter 전송, Shift+Enter 줄바꿈 ---
   textareaEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      if (isComposing) return;                 // ⛑ 조합 중 Enter는 전송 금지
+      if (isComposing) return;                 
       e.preventDefault();
       if (formEl && typeof formEl.requestSubmit === "function") {
-        formEl.requestSubmit();                // ⛑ 제출 경로를 submit 한 곳으로 일원화
+        formEl.requestSubmit();                
       } else {
         formEl.dispatchEvent(new Event("submit", { cancelable: true }));
       }
@@ -102,9 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function handleChatSubmit(e) {
     e.preventDefault();
-    if (sending) return;                       // ⛑ 연타 방지
+    if (sending) return;                       
 
-    // 마지막 개행 제거 → "마지막 글자 중복" 착시 방지
+    // 마지막 글자 중복 방지
     const raw  = textareaEl.value ?? "";
     const content = raw.replace(/\r?\n$/, "").trim();
     if (!content) return;
@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({
           apiKey,
           model: selectedModel,
-          // 시스템 메시지를 제외한 대화 기록만 전송
           messages: messages.filter(m => m.role !== "system")
         })
       });
@@ -152,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addBubble({ role: "assistant", content: reply });
       messages.push({ role: "assistant", content: reply });
 
-      // (선택) 실제 서빙된 모델을 뱃지로 확인
+      // 실제 서빙된 모델 확인
       const served = data?.model || data?.servedModel;
       if (served && servedBadge) servedBadge.textContent = `served: ${served}`;
     } catch (err) {

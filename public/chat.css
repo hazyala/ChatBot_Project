@@ -115,11 +115,11 @@ body::before {
   background:rgba(236, 110, 173, 1);   
   color: white;
   border-bottom-right-radius: 6px;
-  backdrop-filter: blur(6px);             /* 글래스 느낌 */
-  border: 1px solid rgba(255,255,255,0.1); /* 테두리 은은하게 */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);  /* 살짝 그림자 */
-  backdrop-filter: blur(10px);           /* 배경 흐림 */
-  -webkit-backdrop-filter: blur(10px);   /* 사파리 대응 */
+  backdrop-filter: blur(6px);            
+  border: 1px solid rgba(255,255,255,0.1); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);  
+  backdrop-filter: blur(10px);           
+  -webkit-backdrop-filter: blur(10px);   
   margin-right: 40px;
 
 }
@@ -131,8 +131,8 @@ body::before {
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  backdrop-filter: blur(10px);           /* 배경 흐림 */
-  -webkit-backdrop-filter: blur(10px);   /* 사파리 대응 */
+  backdrop-filter: blur(10px);          
+  -webkit-backdrop-filter: blur(10px);  
   margin-left: 40px;
 
 }
@@ -152,7 +152,7 @@ body::before {
 
   width: 80vw;
   max-width: 900px;
-  margin: 0 auto 50px auto;    /* 하단에서 충분히 여유있게 (40px) */
+  margin: 0 auto 50px auto;    
   padding: 0px 50px;
 
   top: 50%;
@@ -176,7 +176,6 @@ body::before {
 
   padding: 12px 20px;
 
-  /* 좌우 간격을 clamp 로 */
   margin-left: clamp(0.1px, 0.1%, 0.1px);
   margin-right: clamp(10px, 15%, 30px);
 }
@@ -189,7 +188,7 @@ body::before {
 #send-btn {
   flex-shrink: 0;
   border: none;
-  border-radius: 25px;            /* 캡슐형 버튼 */
+  border-radius: 25px;           
   width: clamp(90px, 20%, 180px);
   padding: 20px 15px;
 
@@ -234,16 +233,16 @@ button.ghost:hover {
 /* ========== Glass Container ========== */
 .container {
   display: flex;
-  justify-content: center;   /* 가로 중앙 정렬 */
-  align-items: center;       /* 세로 정렬 */
+  justify-content: center;   
+  align-items: center;      
   gap: 12px;
 
   position: relative;
   z-index: 5;
 
   
-  max-width: 2800px;         /* 최대폭도 확대 */
-  margin: 0 auto 50px auto;  /* 하단 여백 살짝 줄임 */
+  max-width: 2800px;         
+  margin: 0 auto 50px auto;  
 }
 
 .glass-container {
@@ -252,7 +251,7 @@ button.ghost:hover {
   color: var(--lg-text);
   cursor: pointer;
   background: transparent;
-  border-radius: 3rem;     /* 둥글기는 유지하되 세로 얇게 보이도록 살짝 축소 */
+  border-radius: 3rem;     
   overflow: hidden;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2),
               0 0 20px rgba(0, 0, 0, 0.1);
@@ -260,7 +259,7 @@ button.ghost:hover {
 }
 
 .glass-container--large {
-  min-width: 80rem;          /* 기존보다 가로폭 기본값 확대 */
+  min-width: 80rem;          
 }
 
 /* ========== Glass Layers ========== */
@@ -294,8 +293,8 @@ button.ghost:hover {
   position: relative;
   z-index: 3;
   display: flex;
-  align-items: center;              /* 간격 약간 줄여서 전체 폭 활용 */
-  padding: 0.4rem 1rem;    /* 상하 패딩 줄여서 세로 얇게, 좌우는 살짝 줄여 깔끔하게 */
+  align-items: center;            
+  padding: 0.4rem 1rem;    
 }
 
 .glass-content--inline {
